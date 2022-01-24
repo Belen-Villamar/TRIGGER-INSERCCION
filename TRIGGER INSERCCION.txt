@@ -1,0 +1,33 @@
+exports = async function(changeEvent) {
+  
+  const INICIO= context.services.get("Cluster0").db("Tutorias").collection("DESCRIPCION_TUTORIA");
+  const conteo= context.services.get("Cluster0").db("Tutorias").collection("TUTORIAS");
+  const tutors= context.services.get("Cluster0").db("Tutorias").collection("TUTOR");
+  try {
+
+  if(changeEvent.fullDocument.Fin_tutoria ==="Finalizado"){
+  const   primero=await   conteo.findOne({_id:changeEvent.fullDocument.Tutorias} );
+    console.log(primero.Tutor);
+      console.log(JSON.stringify(primero));   
+       const contar=  tutors.updateOne({_id:primero.Tutor},
+  {
+       $inc: {
+        Numero_tutorias
+:1
+        }
+  }
+ );
+
+
+  }
+
+       console.log(JSON.stringify(tutor));   
+
+  } catch (err) {
+    
+    console.error("No valio", err);
+  }
+  
+  return; 
+  
+};
